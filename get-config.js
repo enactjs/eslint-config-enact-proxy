@@ -14,12 +14,7 @@ function getGlobalConfig({
 ) {
 	if (globalModulesPath) {
 		// Locate ESLint root package level from active main module
-		let eslintPath = path.dirname(path.resolve(require.main.filename));
-		let parent = path.dirname(eslintPath);
-		while (!fs.existsSync(path.join(eslintPath, 'package.json')) && eslintPath !== parent) {
-			eslintPath = parent;
-			parent = path.dirname(eslintPath);
-		}
+		const eslintPath = path.join(globalModulesPath, 'eslint')
 
 		// ESLint's module resolver file
 		const resolverFile = path.join(eslintPath, 'lib', 'shared', 'relative-module-resolver.js');
