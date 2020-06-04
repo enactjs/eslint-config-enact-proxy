@@ -13,8 +13,15 @@ function getGlobalConfig({
 	} = {}
 ) {
 	if (globalModulesPath) {
+		// Locate ESLint root package level from active main module
+		let eslintPath = path.dirname(path.resolve(require.main.filename));
+		let parent = path.dirname(eslintPath);
+		while (!fs.existsSync(path.join(eslintPath, 'package.json')) && eslintPath !== parent) {
+			eslintPath = parent;
+			parent = path.dirname(eslintPath);
+		}
+
 		// ESLint's module resolver file
-		const eslintPath = path.resolve(require.main.filename, '../..');
 		const resolverFile = path.join(eslintPath, 'lib', 'shared', 'relative-module-resolver.js');
 
 		if (fs.existsSync(resolverFile)) {
@@ -27,8 +34,13 @@ function getGlobalConfig({
 			// correctly.
 			// Can be considered a fatal error. Rather than throw an error and have an
 			// unhelpful stack output, more direct/developer-friendly to handle here.
-			console.error('ERROR: Unable to add support for global relative pathing.')
-			console.error('Incompatible version of ESLint.');
+			console.error('ERROR: Unable to setup support for global relative pathing.');
+			try {
+				const version = require(path.join(eslintPath, 'package.json')).version;
+				console.error('Incompatible version of ESLint: ' + version);
+			} catch (e) {
+				console.error('Unable to find ESLint');
+			}
 			process.exit(1);
 		}
 		return {extends: ruleset};
