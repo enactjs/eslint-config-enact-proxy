@@ -16,6 +16,7 @@ function getGlobalConfig({
 		// Locate ESLint root package level from active main module
 		const eslintPath = path.join(globalModulesPath, 'eslint')
 
+
 		// ESLint's module resolver file
 		const resolverFile = path.join(eslintPath, 'lib', 'shared', 'relative-module-resolver.js');
 
@@ -23,21 +24,11 @@ function getGlobalConfig({
 			// Find first global search path containing eslint-config-enact
 			const dir = search.find(d => fs.existsSync(path.join(d, 'eslint-config-enact')));
 			if (dir) supportGlobalResolving(resolverFile, dir);
-		} else {
-			// If eslint/lib/shared/relative-module-resolver.js does not exist, then our
-			// config is guaranteed to not (currently) resolve plugins/presets/parser
-			// correctly.
-			// Can be considered a fatal error. Rather than throw an error and have an
-			// unhelpful stack output, more direct/developer-friendly to handle here.
-			console.error('ERROR: Unable to setup support for global relative pathing.');
-			try {
-				const version = require(path.join(eslintPath, 'package.json')).version;
-				console.error('Incompatible version of ESLint: ' + version);
-			} catch (e) {
-				console.error('Unable to find ESLint');
-			}
-			process.exit(1);
 		}
+		// If eslint/lib/shared/relative-module-resolver.js does not exist, then
+		// our global resolving support cannot be patched in.
+		// As a meaningful fallback, and to backward-support ESLint <=5.x, still
+		// should extend the desired ruleset.
 		return {extends: ruleset};
 	}
 }

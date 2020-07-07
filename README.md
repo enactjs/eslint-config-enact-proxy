@@ -1,18 +1,18 @@
-# eslint-config-enact-global
+# eslint-config-enact-proxy
 
 > A minimal local proxy config to load globally-installed Enact ESLint rules.
 
-Standalone package which acts as a forwarder ESLint config, dynamically searching for `eslint-config-enact` global install or `@enact/cli` global install, and loading the rules/plugins/parser from there. This is *not* needed for `enact lint` command and is primarily targetted for `eslint` and in-editor linting usage.
+Standalone "ESLint config" package which acts as a dynamic forwarder, dynamically searching for `@enact/cli` global install or `eslint-config-enact` global install (with accomanying parser/plugins), and loading the rules/plugins/parser from there. This is *not* needed for `enact lint` command and is primarily designed for `eslint` and in-editor linting usage.
 
 ## Usage
 
 Reference this set of rules from your `.eslintrc` or `package.json` file and then use `eslint`.
 
-For more information (including editor/IDE setup), please see the [docs](docs/index.md).
+For more information (including editor/IDE setup), please see the [Enact ESLint config docs](https://github.com/enactjs/eslint-config-enact/blob/master/docs/index.md).
 
 ## Installation
 
-`eslint-config-enact-global` should be installed locally on a project.  It will expect `eslint-config-enact` or `@enact/cli` to be installed globally.
+`eslint-config-enact-proxy` should be installed locally on a project.  It will expect `eslint-config-enact` or `@enact/cli` to be installed globally.
 
 ## Copyright and License Information
 
