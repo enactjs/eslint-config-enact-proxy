@@ -1,7 +1,7 @@
 # Change Log
 
-The following is a curated list of changes in the Enact eslint config:
+The following is a curated list of changes in the Enact proxy ESLint config:
 
-## [unreleased]
+## [1.0.0]
 
 * Initial release with default and strict mode
