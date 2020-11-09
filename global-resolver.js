@@ -10,7 +10,8 @@ const execSync = cmd => {
 			cwd: process.cwd(),
 			env: process.env,
 			encoding: 'utf8',
-			windowsHide: true
+			windowsHide: true,
+			stdio: 'pipe'
 		}
 		return cp.execSync(cmd, opts).trim();
 	} catch(e) {
@@ -22,16 +23,24 @@ const npmGlobalModules = () => execSync('npm root -g');
 
 const yarnGlobalModules = () => execSync('yarn global dir');
 
-const supportGlobalResolving = (resolverFile, globalPath) => {
+const supportGlobalResolving = (resolverFile, globalPaths) => {
 	const resolver = require(resolverFile);
 	const doResolve = resolver.resolve;
+	if (!Array.isArray(globalPaths)) globalPaths = [globalPaths];
 	resolver.resolve = function(moduleName, relativeToPath) {
 		try {
 			// attempt normal resolving to support local & overrides
 			return doResolve.call(resolver, moduleName, relativeToPath);
 		} catch (e) {
 			// support global-relative path resolving
-			return doResolve.call(resolver, moduleName, globalPath);
+			for(let i = 0; i < globalPaths.length; i++) {
+				try {
+					return doResolve.call(resolver, moduleName, globalPaths[i]);
+				} catch(e2) {
+					// continue to next globalPaths entry
+				}
+			}
+			throw e;
 		}
 	};
 };
