@@ -24,9 +24,16 @@ function getGlobalConfig({
 	} = {}
 ) {
 	// Locate ESLint module resolver file.
-	const eslintResolverPath = search
-		.map(dir => path.join(dir, 'eslint', 'node_modules', '@eslint', 'eslintrc', 'lib', 'shared', 'relative-module-resolver.js'))
+	let eslintResolverPath = search
+	.map(dir => path.join(dir, 'eslint', 'node_modules', '@eslint', 'eslintrc', 'lib', 'shared', 'relative-module-resolver.js'))
+	.find(dir => fs.existsSync(dir));
+	if (!eslintResolverPath) {
+		// Locate ESLint module resolver file.(< 7.12.0)
+		eslintResolverPath = search
+		.map(dir => path.join(dir, 'eslint', 'lib', 'shared', 'relative-module-resolver.js'))
 		.find(dir => fs.existsSync(dir));
+	}
+
 	if (eslintResolverPath) {
 		supportGlobalResolving(eslintResolverPath, search);
 	}
