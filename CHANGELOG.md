@@ -6,7 +6,7 @@ The following is a curated list of changes in the Enact proxy ESLint config:
 
 ### Fixed
 
-- Change Locates of ESLint module resolver file.
+- Change Locations of ESLint module resolver file.
 
 ## [1.0.1]
 
