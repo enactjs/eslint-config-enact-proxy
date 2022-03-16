@@ -42,7 +42,7 @@ function getGlobalConfig({
 					}
 				} = require(eslintrcPath);
 				eslintResolver = ModuleResolver;
-			} else if (semver.gte(version, '0.2.0')) {
+			} else if (semver.gte(version, '0.2.2')) {
 				eslintResolver = require(eslintResolverPath);
 			} else {
 				eslintResolver = require(path.join(eslintrcPath, '..', '..', '..', 'lib', 'shared', 'relative-module-resolver.js'));
