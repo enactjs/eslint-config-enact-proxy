@@ -12,5 +12,8 @@
   "scripts": {
     "lint": "eslint .",
     "fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "semver": "^7.3.5"
   }
 }
