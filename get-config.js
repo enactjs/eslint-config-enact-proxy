@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const semver = require('semver');
 const {npmGlobalModules, yarnGlobalModules, supportGlobalResolving} = require('./global-resolver');
 
 // Find first parent module from the accessing ESLint.
@@ -29,7 +30,28 @@ function getGlobalConfig({
 		...search.map(dir => path.join(dir, 'eslint', 'lib', 'shared', 'relative-module-resolver.js'))
 	].find(dir => fs.existsSync(dir));
 	if (eslintResolverPath) {
-		supportGlobalResolving(eslintResolverPath, search);
+		let eslintResolver;
+
+		if (eslintResolverPath.includes('eslintrc')) {
+			const eslintrcPath = path.join(eslintResolverPath, '..', '..', '..');
+			const version = require(path.join(eslintrcPath, 'package.json')).version;
+			if (semver.gte(version, '0.4.1')) {
+				const {
+					Legacy: {
+						ModuleResolver
+					}
+				} = require(eslintrcPath);
+				eslintResolver = ModuleResolver;
+			} else if (semver.gte(version, '0.2.2')) {
+				eslintResolver = require(eslintResolverPath);
+			} else {
+				eslintResolver = require(path.join(eslintrcPath, '..', '..', '..', 'lib', 'shared', 'relative-module-resolver.js'));
+			}
+		} else {
+			eslintResolver = require(eslintResolverPath);
+		}
+
+		supportGlobalResolving(eslintResolver, search);
 	}
 	// If eslint/lib/shared/relative-module-resolver.js does not exist, then
 	// our global resolving support cannot be patched in.

@@ -23,8 +23,7 @@ const npmGlobalModules = () => execSync('npm root -g');
 
 const yarnGlobalModules = () => execSync('yarn global dir');
 
-const supportGlobalResolving = (resolverFile, globalPaths) => {
-	const resolver = require(resolverFile);
+const supportGlobalResolving = (resolver, globalPaths) => {
 	const doResolve = resolver.resolve;
 	if (!Array.isArray(globalPaths)) globalPaths = [globalPaths];
 	resolver.resolve = function(moduleName, relativeToPath) {

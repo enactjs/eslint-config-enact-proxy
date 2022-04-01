@@ -2,6 +2,12 @@
 
 The following is a curated list of changes in the Enact proxy ESLint config:
 
+## [unreleased]
+
+### Fixed
+
+- Applied the new API to call ESLint module resolver correctly with the latest eslint.
+
 ## [1.0.3] (December 28, 2021)
 
 No significant changes.
