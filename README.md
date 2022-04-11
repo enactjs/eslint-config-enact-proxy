@@ -19,7 +19,7 @@ For more information (including editor/IDE setup), please see the [Enact ESLint 
 Unless otherwise specified, all content, including all source code files and
 documentation files in this repository are:
 
-Copyright (c) 2020 LG Electronics
+Copyright (c) 2020-2022 LG Electronics
 
 Unless otherwise specified or set forth in the NOTICE file, all content,
 including all source code files and documentation files in this repository are:
