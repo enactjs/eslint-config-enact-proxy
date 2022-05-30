@@ -2,7 +2,7 @@
 
 The following is a curated list of changes in the Enact proxy ESLint config:
 
-## [unreleased]
+## [1.0.5]
 
 ### Fixed
 
