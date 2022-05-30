@@ -2,6 +2,12 @@
 
 The following is a curated list of changes in the Enact proxy ESLint config:
 
+## [1.0.5]
+
+### Fixed
+
+- Updated the `lockfileVersion` of npm-shrinkwrap file to v2.
+
 ## [1.0.4] (April 11, 2022)
 
 ### Fixed
