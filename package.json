@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-enact-proxy",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ESLint proxy config for global Enact ruleset",
   "main": "index.js",
   "author": "Jason Robitaille <jason.robitaille@lge.com>",
