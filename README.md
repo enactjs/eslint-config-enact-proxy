@@ -2,7 +2,7 @@
 
 > A minimal local proxy config to load globally-installed Enact ESLint rules.
 
-Standalone "ESLint config" package which acts as a dynamic forwarder, dynamically searching for `@enact/cli` global install or `eslint-config-enact` global install (with accomanying parser/plugins), and loading the rules/plugins/parser from there. This is *not* needed for `enact lint` command and is primarily designed for `eslint` and in-editor linting usage.
+Standalone "ESLint config" package which acts as a dynamic forwarder, dynamically searching for `@enact/cli` global install or `eslint-config-enact` global install (with accompanying parser/plugins), and loading the rules/plugins/parser from there. This is *not* needed for `enact lint` command and is primarily designed for `eslint` and in-editor linting usage.
 
 ## Usage
 
