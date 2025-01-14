@@ -27,6 +27,7 @@ const supportGlobalResolving = (resolver, globalPaths) => {
 	const doResolve = resolver.resolve;
 	if (!Array.isArray(globalPaths)) globalPaths = [globalPaths];
 	resolver.resolve = function(moduleName, relativeToPath) {
+		console.log(`[${moduleName}] ${relativeToPath}`);
 		try {
 			// attempt normal resolving to support local & overrides
 			return doResolve.call(resolver, moduleName, relativeToPath);
