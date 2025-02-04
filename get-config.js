@@ -26,26 +26,26 @@ function getGlobalConfig({
 ) {
 	// Locate ESLint module resolver file.
 	const eslintResolverPath = [
-		...search.map(dir => path.join(dir, 'eslint', 'node_modules', '@eslint', 'eslintrc', 'lib', 'shared', 'relative-module-resolver.js')),
+		...search.map(dir => path.join(dir, 'eslint', 'node_modules', '@eslint', 'eslint.config.js', 'lib', 'shared', 'relative-module-resolver.js')),
 		...search.map(dir => path.join(dir, 'eslint', 'lib', 'shared', 'relative-module-resolver.js'))
 	].find(dir => fs.existsSync(dir));
 	if (eslintResolverPath) {
 		let eslintResolver;
 
-		if (eslintResolverPath.includes('eslintrc')) {
-			const eslintrcPath = path.join(eslintResolverPath, '..', '..', '..');
-			const version = require(path.join(eslintrcPath, 'package.json')).version;
+		if (eslintResolverPath.includes('eslint.config.js')) {
+			const eslintConfigPath = path.join(eslintResolverPath, '..', '..', '..');
+			const version = require(path.join(eslintConfigPath, 'package.json')).version;
 			if (semver.gte(version, '0.4.1')) {
 				const {
 					Legacy: {
 						ModuleResolver
 					}
-				} = require(eslintrcPath);
+				} = require(eslintConfigPath);
 				eslintResolver = ModuleResolver;
 			} else if (semver.gte(version, '0.2.2')) {
 				eslintResolver = require(eslintResolverPath);
 			} else {
-				eslintResolver = require(path.join(eslintrcPath, '..', '..', '..', 'lib', 'shared', 'relative-module-resolver.js'));
+				eslintResolver = require(path.join(eslintConfigPath, '..', '..', '..', 'lib', 'shared', 'relative-module-resolver.js'));
 			}
 		} else {
 			eslintResolver = require(eslintResolverPath);
