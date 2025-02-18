@@ -2,6 +2,10 @@
 
 The following is a curated list of changes in the Enact proxy ESLint config:
 
+## [1.0.9] (February 18, 2025)
+
+* Updated dependencies.
+
 ## [1.0.8] (July 24, 2024)
 
 * Updated dependencies.
