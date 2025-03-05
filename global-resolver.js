@@ -24,9 +24,11 @@ const npmGlobalModules = () => execSync('npm root -g');
 const yarnGlobalModules = () => execSync('yarn global dir');
 
 const supportGlobalResolving = (resolver, globalPaths) => {
+	console.log("test", globalPaths);
 	const doResolve = resolver.resolve;
 	if (!Array.isArray(globalPaths)) globalPaths = [globalPaths];
 	resolver.resolve = function(moduleName, relativeToPath) {
+		 console.log("5",`[${moduleName}] ${relativeToPath}`);
 		try {
 			// attempt normal resolving to support local & overrides
 			return doResolve.call(resolver, moduleName, relativeToPath);
