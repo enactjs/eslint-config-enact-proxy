@@ -3,6 +3,7 @@
 * [ ] I have read and understand the [contribution guide](http://enactjs.com/docs/developer-guide/contributing/)
 * [ ] A [CHANGELOG entry](http://enactjs.com/docs/developer-guide/contributing/changelogs/) is included
 * [ ] I have run automated CLI testing and it is passed
+* [ ] Documentation was added or is not needed
 * [ ] This is an API breaking change
 
 ### Issue Resolved / Feature Added
