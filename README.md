@@ -6,7 +6,7 @@ Standalone "ESLint config" package which acts as a dynamic forwarder, dynamicall
 
 ## Usage
 
-Reference this set of rules from your `.eslintrc` or `package.json` file and then use `eslint`.
+Reference this set of rules from your `eslint.config.js` file and then use `eslint`.
 
 For more information (including editor/IDE setup), please see the [Enact ESLint config docs](https://github.com/enactjs/eslint-config-enact/blob/master/docs/index.md).
 

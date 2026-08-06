@@ -31,6 +31,8 @@ function getGlobalConfig({
 	].find(dir => fs.existsSync(dir));
 	if (eslintResolverPath) {
 		let eslintResolver;
+		
+		console.log("2", eslintResolverPath);
 
 		if (eslintResolverPath.includes('eslintrc')) {
 			const eslintrcPath = path.join(eslintResolverPath, '..', '..', '..');
@@ -52,12 +54,15 @@ function getGlobalConfig({
 		}
 
 		supportGlobalResolving(eslintResolver, search);
+
+		console.log("3", eslintResolver);
+		console.log("4", ruleset);
 	}
 	// If eslint/lib/shared/relative-module-resolver.js does not exist, then
 	// our global resolving support cannot be patched in.
 	// As a meaningful fallback, and to backward-support ESLint <=5.x, still
 	// should extend the desired ruleset.
-	return {extends: ruleset};
+	return ruleset;
 }
 
 module.exports = {
