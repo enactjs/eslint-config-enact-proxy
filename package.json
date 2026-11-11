@@ -6,14 +6,11 @@
   "author": "Jason Robitaille <jason.robitaille@lge.com>",
   "repository": "https://github.com/enactjs/eslint-config-enact-proxy",
   "license": "Apache-2.0",
-  "eslintConfig": {
-    "extends": "./index.js"
-  },
   "scripts": {
     "lint": "eslint .",
     "fix": "eslint . --fix"
   },
-  "dependencies": {
-    "semver": "^7.6.3"
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0"
   }
 }

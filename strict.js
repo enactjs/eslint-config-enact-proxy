@@ -1,3 +1,3 @@
 const {getGlobalConfig} = require('./get-config');
 
-module.exports = getGlobalConfig({ruleset: 'enact/strict'});
+module.exports = getGlobalConfig({ruleset: 'strict'});
